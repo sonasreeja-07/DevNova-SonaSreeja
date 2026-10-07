@@ -1,5 +1,5 @@
 package com.novabank.transfer.security;
-
+import java.security.SecureRandom;
 import java.nio.charset.StandardCharsets;
 import java.security.GeneralSecurityException;
 import java.util.Base64;
@@ -13,8 +13,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class ReceiptSigner {
 
-    private static final String RECEIPT_SIGNING_KEY = "nbk_7Qp2Vx9Lm4Rz8Tc1Hy6Wd3Fs5Gj0KaE";
+        private static final String RECEIPT_SIGNING_KEY = loadKey();
 
+    private static String loadKey() {
+        String key = System.getenv("RECEIPT_SIGNING_KEY");
+        if (key != null && !key.isBlank()) {
+            return key;
+        }
+        byte[] random = new byte[32];
+        new SecureRandom().nextBytes(random);
+        return Base64.getEncoder().encodeToString(random);
+    }
     public String sign(String reference, String fromAccount) {
         try {
             Mac mac = Mac.getInstance("HmacSHA256");
