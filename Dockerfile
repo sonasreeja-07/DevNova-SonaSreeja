@@ -1,7 +1,7 @@
 FROM eclipse-temurin:21.0.2_13-jdk-jammy
 
 ENV SPRING_PROFILES_ACTIVE=prod
-ENV PAYMENT_GATEWAY_API_KEY=sk_live_K6zXc2fAPgicxSnrkD207Hudb0Ae
+
 
 RUN apt-get update && apt-get install -y openssh-server sudo curl net-tools
 
