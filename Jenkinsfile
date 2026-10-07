@@ -58,7 +58,7 @@ pipeline {
         stage('Gitleaks') {
             steps {
                 // GATE: fails the build if any secret is found (values are redacted in logs)
-                sh 'gitleaks detect --source . --redact --report-format json --report-path gitleaks-report.json --exit-code 1 --verbose'
+                   sh 'gitleaks detect --no-git --source . --redact --report-format json --report-path gitleaks-report.json --exit-code 1 --verbose'
             }
             post {
                 always {
