@@ -54,7 +54,7 @@
         </dependency>
 
         <!-- YAML parsing for transfer templates -->
-         dependency>
+         <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
         </dependency>
