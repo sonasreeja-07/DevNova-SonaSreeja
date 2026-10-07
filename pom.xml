@@ -17,9 +17,10 @@
     <name>novabank-transfer</name>
     <description>NovaBank Transfer Portal - DevSecOps hackathon application (fictional bank, intentionally insecure)</description>
 
-    <properties>
+   <properties>
         <java.version>21</java.version>
         <jacoco.version>0.8.14</jacoco.version>
+        <tomcat.version>10.1.58</tomcat.version>
     </properties>
 
     <dependencies>
@@ -46,19 +47,17 @@
         </dependency>
 
         <!-- Collection helpers -->
-        <dependency>
+         <dependency>
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
-            <version>3.2.1</version>
+            <version>3.2.2</version>
         </dependency>
 
         <!-- YAML parsing for transfer templates -->
-        <dependency>
+         dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
-            <version>1.33</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
