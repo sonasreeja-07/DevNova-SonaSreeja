@@ -1,5 +1,5 @@
 package com.novabank.transfer.security;
-
+import java.security.SecureRandom;
 import java.nio.charset.StandardCharsets;
 import java.security.GeneralSecurityException;
 import java.util.Base64;
@@ -13,7 +13,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class AccountTokenService {
 
-    private static final byte[] TOKEN_KEY = "NovaBankKey12345".getBytes(StandardCharsets.UTF_8);
+       private static final byte[] TOKEN_KEY = loadKey();
+
+    private static byte[] loadKey() {
+        String key = System.getenv("TOKEN_KEY");
+        if (key != null && !key.isBlank()) {
+            return key.getBytes(StandardCharsets.UTF_8);   // must be 16, 24 or 32 characters
+        }
+        byte[] random = new byte[16];
+        new SecureRandom().nextBytes(random);
+        return random;
+    }
 
     public String tokenize(String accountNumber) {
         try {
